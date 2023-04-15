@@ -2,5 +2,5 @@
     position: relative;
     display: grid;
     grid-template-columns: 22rem auto 30rem;
-    gap: 1rem;
+    gap: 3rem;
 }
