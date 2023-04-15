@@ -1,8 +1,11 @@
 import "./App.css"
+import Home from "./pages/home/Home";
 function App() {
   return (
     <div className="App">
-        Subscribe Zainkeeps code
+        <div className="blur blur1"></div>
+        <div className="blur blur2"></div>
+        <Home />
     </div>
   );
 }
