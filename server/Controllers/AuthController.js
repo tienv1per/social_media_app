@@ -1,4 +1,3 @@
-// import UserModel from "../Models/usersModel.js";
 const UserModel = require("../Models/usersModel");
 const bcrypt = require("bcrypt");
 

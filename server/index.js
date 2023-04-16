@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const AuthRoute = require("./Routes/AuthRoute.js");
+const UserRoute = require("./Routes/UsersRoute.js");
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/auth", AuthRoute);
+app.use("/user", UserRoute);
 
 app.listen(PORT, (req, res) => {
     connect();
