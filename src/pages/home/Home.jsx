@@ -10,7 +10,6 @@ const Home = () => {
         <ProfieSide />
         <PostSide/>
         <RightSide />
-        
     </div>
   )
 }
