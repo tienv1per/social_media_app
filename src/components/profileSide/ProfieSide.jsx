@@ -2,6 +2,7 @@ import React from 'react';
 import './profileSide.css';
 import LogoSearch from '../LogoSearch/LogoSearch';
 import ProfileCard from '../ProfileCard/ProfileCard';
+import FollowersCard from "../FollowersCard/FollowersCard";
 
 const ProfieSide = () => {
   return (
@@ -9,6 +10,7 @@ const ProfieSide = () => {
         ProfieSide
         <LogoSearch/>
         <ProfileCard/>
+        <FollowersCard/>
     </div>
   )
 }
