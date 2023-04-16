@@ -24,6 +24,8 @@
     border-radius: 10px;
     padding: 10px;
     font-size: 17px;
+    width: 90%;
+    height: 2rem;
     border: none;
     outline: none;
 }
