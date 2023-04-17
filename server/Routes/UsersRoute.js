@@ -3,6 +3,8 @@ const UsersController = require("../Controllers/UsersController");
 
 const router = express.Router();
 
+router.get("/", UsersController.getUsers);
+
 router.get("/:id", UsersController.getUser);
 
 router.put("/:id", UsersController.updateUser);

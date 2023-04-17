@@ -121,3 +121,12 @@ module.exports.unfollowUser = async(req, res, next) => {
         return res.status(500).json(error);
     }
 }
+
+module.exports.getUsers = async (req, res, next) => {
+    try {
+        const users = await UserModel.find();
+        return res.status(200).json(users);
+    } catch (error) {
+        return res.status(500).json(error.message);
+    }
+}
