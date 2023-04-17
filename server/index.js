@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const AuthRoute = require("./Routes/AuthRoute.js");
 const UserRoute = require("./Routes/UsersRoute.js");
+const PostRoute = require("./Routes/PostsRoute.js");
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
+app.use("/post", PostRoute);
 
 app.listen(PORT, (req, res) => {
     connect();
