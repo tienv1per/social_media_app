@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const AuthRoute = require("./Routes/AuthRoute.js");
 const UserRoute = require("./Routes/UsersRoute.js");
 const PostRoute = require("./Routes/PostsRoute.js");
@@ -26,6 +27,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors());
 
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
