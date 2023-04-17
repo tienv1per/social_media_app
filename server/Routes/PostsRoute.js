@@ -9,4 +9,12 @@ router.get("/", (req, res, next) => {
 
 router.post("/", PostsController.createPost);
 
+router.get("/:id", PostsController.getPost);
+
+router.put("/:id", PostsController.updatePost);
+
+router.delete("/:id", PostsController.deletePost);
+
+router.put("/like/:id", PostsController.likePost);
+
 module.exports = router;
