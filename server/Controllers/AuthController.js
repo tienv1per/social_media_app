@@ -1,5 +1,11 @@
 const UserModel = require("../Models/usersModel");
 const bcrypt = require("bcrypt");
+const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
+
+dotenv.config();
+
+const JWT_TOKEN = process.env.JWT_TOKEN;
 
 module.exports.registerUser = async(req, res, next) => {
     const {username, password, firstname, lastname} = req.body;
@@ -8,8 +14,17 @@ module.exports.registerUser = async(req, res, next) => {
     const newUser = new UserModel({username, password:hashed, firstname, lastname});
 
     try {
+        const oldUser = await UserModel.findOne({username: username});
+        if(oldUser) {
+            return res.status(400).json("Username already in use");
+        }
         const savedUser = await newUser.save();
-        return res.status(200).json(savedUser);
+
+        const token = jwt.sign({
+            username: savedUser.username,
+            id: savedUser._id
+        }, JWT_TOKEN);
+        return res.status(200).json({savedUser, token});
     } catch (error) {
         return res.status(500).json({message: error.message});
     }
@@ -22,7 +37,18 @@ module.exports.loginUser = async(req, res, next) => {
         if(user) {
             const isValid = await bcrypt.compare(password, user.password);
             if(isValid) {
-                return res.status(200).json(user);
+                const token = jwt.sign({
+                    username: user.username,
+                    id: user._id,
+                    isAdmin: user.isAdmin
+                }, JWT_TOKEN);
+                
+                return res
+                        .cookie("token_dcmm", token, {
+                            httpOnly: true,
+                        })
+                        .status(200)
+                        .json({user, token});
             }
             else {
                 return res.status(400).json({ message: "Wrong password"});

@@ -2,7 +2,7 @@
   "name": "starter",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000/",
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@iconscout/react-unicons": "^1.1.6",
     "@mantine/core": "^4.2.12",

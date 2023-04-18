@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import "./Auth.css";
 import Logo from "../../img/logo.png";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { logIn, signUp } from '../../actions/AuthAction';
 
 const Auth = () => {
 	const [isSignUp, setIsSignUp] = useState(false);
+	const loading = useSelector((state) => state.authReducer.loading);
 
 	const dispatch = useDispatch();
 
@@ -26,13 +27,9 @@ const Auth = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		setConfirmPass(true)
 		if(isSignUp) {
-			if(data.password === data.confirmpass) {
-				dispatch(signUp(data));
-			}
-			else {
-				setConfirmPass(false);
-			}
+			data.password===data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
 		}
 		
 		else{
@@ -116,10 +113,10 @@ const Auth = () => {
 							style={{fontSize: "16px", cursor: "pointer"}}
 							onClick={() => {setIsSignUp(!isSignUp); resetForm()}}
 						>
-							{isSignUp ? "Already have an account? LOGIN" : "Don't have an account? SIGN UP"}
+							{loading ? "Loading..." : isSignUp ? "Already have an account? LOGIN" : "Don't have an account? SIGN UP"}
 						</span>
 					</div>
-					<button className='button infoButton' type='submit'>{isSignUp ? "Signup" : "Login"}</button>
+					<button className='button infoButton' type='submit' disabled={loading}>{isSignUp ? "Signup" : "Login"}</button>
 				</form>
 			</div>
 		</div>
