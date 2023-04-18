@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const AuthRoute = require("./Routes/AuthRoute.js");
 const UserRoute = require("./Routes/UsersRoute.js");
 const PostRoute = require("./Routes/PostsRoute.js");
+const UploadRoute = require("./Routes/UploadRoute.js");
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use(cors());
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/post", PostRoute);
+app.use("/upload", UploadRoute);
 
 app.listen(PORT, (req, res) => {
     connect();

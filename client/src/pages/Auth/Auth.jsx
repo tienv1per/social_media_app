@@ -27,7 +27,7 @@ const Auth = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		setConfirmPass(true)
+		setConfirmPass(true);
 		if(isSignUp) {
 			data.password===data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
 		}
