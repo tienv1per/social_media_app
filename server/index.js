@@ -27,6 +27,10 @@ const connect = async () => {
 
 const app = express();
 
+// to serve images for public
+app.use(express.static("public"));
+app.use("/images", express.static("images"));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
